@@ -35,7 +35,7 @@ namespace ClosestNumber
                     BadInput = true;
                     Console.Write("Rounding Zeros > ");
                     Input = Console.ReadLine();
-                    int Multiple = 0;
+                    int Multiple = 1;
 
                     while (BadInput)
                     {
