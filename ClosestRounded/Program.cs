@@ -58,20 +58,20 @@ namespace ClosestNumber
                         Round = Rounding.ToString().Substring(1);
                     else Round = Rounding.ToString();
 
-                    if (Round.Contains("."))
-                    {
-                        int FractionPlaces = CoreNumber.ToString().Substring(CoreNumber.ToString().IndexOf('.')).Length;
-                        int RoundingPlaces = Round.Substring(Round.IndexOf('.')).Length;
-                        if (RoundingPlaces > FractionPlaces)
-                            Round = Round.Substring(0, Round.Length - (RoundingPlaces - FractionPlaces));
-                    }
-
                     bool? Succeeded = true;
                     if (Round.StartsWith(".") && !CoreNumber.ToString().Contains("."))
                         Succeeded = null;
 
                     if (Succeeded != null)
                     {
+                        if (Round.Contains("."))
+                        {
+                            int FractionPlaces = CoreNumber.ToString().Substring(CoreNumber.ToString().IndexOf('.')).Length;
+                            int RoundingPlaces = Round.Substring(Round.IndexOf('.')).Length;
+                            if (RoundingPlaces > FractionPlaces)
+                                Round = Round.Substring(0, Round.Length - (RoundingPlaces - FractionPlaces));
+                        }
+
                         decimal Seed = CoreNumber;
                         bool MultipleNotReached = true;
                         int Limit = 49999999; //This is the limit of iterations...
