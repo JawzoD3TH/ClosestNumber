@@ -56,15 +56,21 @@ namespace ClosestNumber
                     string Round;
                     if (Input.StartsWith("0.") || Input.StartsWith("."))
                         Round = Rounding.ToString().Substring(1);
+                    else if (Input.StartsWith("00"))
+                    {
+                        if (CoreNumber % 1 != 0)
+                            Round = Input + '.';
+                        else Round = Input;
+                    }
                     else Round = Rounding.ToString();
 
                     bool? Succeeded = true;
-                    if (Round.StartsWith(".") && !CoreNumber.ToString().Contains("."))
+                    if (Round.Contains(".") && !CoreNumber.ToString().Contains("."))
                         Succeeded = null;
 
                     if (Succeeded != null)
                     {
-                        if (Round.Contains("."))
+                        if (CoreNumber.ToString().Contains(".") && Round.Contains("."))
                         {
                             int FractionPlaces = CoreNumber.ToString().Substring(CoreNumber.ToString().IndexOf('.')).Length;
                             int RoundingPlaces = Round.Substring(Round.IndexOf('.')).Length;
