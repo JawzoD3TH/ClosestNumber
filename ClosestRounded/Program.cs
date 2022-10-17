@@ -74,7 +74,7 @@ namespace ClosestNumber
                         {
                             int FractionPlaces = CoreNumber.ToString().Substring(CoreNumber.ToString().IndexOf('.')).Length;
                             int RoundingPlaces = Round.Substring(Round.IndexOf('.')).Length;
-                            if (RoundingPlaces > FractionPlaces)
+                            if (RoundingPlaces > FractionPlaces) //Math.Round could've worked but it's a string.
                                 Round = Round.Substring(0, Round.Length - (RoundingPlaces - FractionPlaces));
                         }
 
